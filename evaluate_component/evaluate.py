@@ -88,7 +88,7 @@ class ModelEvaluator:
                     'recall_at_10': 0,
                     'precision_at_5':0,
                     'precision_at_10':0,
-#                     'auc_at_10': 0
+                    'auc_at_10': 0
                    }
 
         # Getting a ranked recommendation list from a model for a given user
@@ -105,7 +105,7 @@ class ModelEvaluator:
                         'recall_at_10': self._recall_at_n(relevant_movies, hits_at_10, 10),
                         'precision_at_5': self._precision_at_n(hits_at_5, 5),
                         'precision_at_10': self._precision_at_n(hits_at_5, 10),
-#                         'auc_at_10': self._auc_at_k(user_id, prediction_score, relevant_movies, 10)
+                        'auc_at_10': self._auc_at_k(user_id, prediction_score, relevant_movies, 10)
                        }
         if verbose:
             indent = '\t'
@@ -124,7 +124,7 @@ class ModelEvaluator:
         return indv_metrics
     
 
-    def evaluate_model(self, model, top_n = 10, indv_metrics_df = False):
+    def evaluate_model(self, model, top_n = -1, indv_metrics_df = False):
         #print('Running evaluation for users')
         all_user_metrics = []
         for idx, user_id in enumerate(list(self.test_set.index.unique().values)):
@@ -140,7 +140,7 @@ class ModelEvaluator:
         agg_recall_at_10 = all_user_metrics_df['hits_at_10_count'].sum() / float(all_user_metrics_df['interacted_count'].sum())
         agg_precision_at_5 = all_user_metrics_df['precision_at_5'].mean()
         agg_precision_at_10 = all_user_metrics_df['precision_at_10'].mean()
-        agg_auc_at_10 = all_user_metrics_df['precision_at_10'].mean()
+        agg_auc_at_10 = all_user_metrics_df['auc_at_10'].mean()
         
         agg_metrics = {'modelName': model.get_model_name(),
                        'recall_at_5': agg_recall_at_5,
