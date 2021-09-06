@@ -34,6 +34,7 @@ Movie-recommender/
 - `general_info`: the module containing general information in the dataset such as the genres of the movies which is fixed
 - `ml-latest-small`: contains the [MovieLens dataset](https://grouplens.org/datasets/movielens/)
 - `models`: contains several models to be combined by the `hybridExplicitFeedback` model and compared together
+- `EDA.ipynb`: this notebook contains the Explore Data Analysis of the dataset
 - `run_and_eval_all_models.ipynb`: this notebook test each model separately and some combination of them
 
 More detailed information can be found in each directory
